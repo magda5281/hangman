@@ -23,7 +23,7 @@ function App() {
       if (isWinner) return;
       setClickedLetters((currentLetters) => [...currentLetters, letter]);
     },
-    [clickedLetters],
+    [clickedLetters, isLoser, isWinner],
   );
 
   // hook up keyboard with hangman drawing
@@ -47,7 +47,11 @@ function App() {
         {isLoser && 'Nice try - Refresh to try again'}
       </h2>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
-      <HangmanWord guessedLetters={clickedLetters} wordToGuess={wordToGuess} />
+      <HangmanWord
+        reveal={isLoser}
+        guessedLetters={clickedLetters}
+        wordToGuess={wordToGuess}
+      />
       <Keyboard
         disabled={isLoser || isWinner}
         activeLetters={clickedLetters.filter((letter) =>
