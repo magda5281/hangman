@@ -32,7 +32,7 @@ h1 {
   align-items: center;
 
   h2 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     text-align: center;
   }
 }
@@ -40,9 +40,20 @@ h1 {
 .drawing {
   position: relative;
 }
+
+.hangmanWord {
+  font-size: clamp(3rem, 5vw, 6rem);
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #43596b;
     background-color: #fbf9f9;
+  }
+}
+
+@media (max-width: 520px) {
+  .drawing {
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0.6);
   }
 }
