@@ -24,8 +24,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -54,6 +52,23 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.hangman_main {
+  max-width: 50rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 0 auto;
+  align-items: center;
+
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+.drawing {
+  position: relative;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
