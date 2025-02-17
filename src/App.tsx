@@ -3,10 +3,12 @@ import words from './wordList.json';
 import HangmanDrawing from './components/hangmanDrawing';
 import HangmanWord from './components/hangmanWord';
 import Keyboard from './components/keyboard';
+
+function getWord() {
+  return words[Math.floor(Math.random() * words.length)];
+}
 function App() {
-  const [wordToGuess, setWordToGuess] = useState(() => {
-    return words[Math.floor(Math.random() * words.length)];
-  });
+  const [wordToGuess, setWordToGuess] = useState(getWord());
   const [clickedLetters, setClickedLetters] = useState<string[]>([]);
   const incorrectLetters = clickedLetters.filter(
     (letter) => !wordToGuess.includes(letter),
@@ -40,11 +42,24 @@ function App() {
     };
   }, [clickedLetters]);
 
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      const key: string = e.key;
+      if (key !== 'Enter') return;
+      setClickedLetters([]);
+      setWordToGuess(getWord());
+    };
+    document.addEventListener('keypress', handler);
+    return () => {
+      document.removeEventListener('keypress', handler);
+    };
+  }, [clickedLetters]);
+
   return (
     <section className="hangman_main">
       <h2>
-        {isWinner && 'WINNER!!! - refresh to try again'}
-        {isLoser && 'Nice try - Refresh to try again'}
+        {isWinner && 'WINNER!!! - click Enter to try again'}
+        {isLoser && 'Nice try - Click Enter to try again'}
       </h2>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
       <HangmanWord
