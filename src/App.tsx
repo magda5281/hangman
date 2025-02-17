@@ -11,17 +11,22 @@ function App() {
   const incorrectLetters = clickedLetters.filter(
     (letter) => !wordToGuess.includes(letter),
   );
+  const isLoser = incorrectLetters.length >= 6;
+  const isWinner = wordToGuess
+    .split('')
+    .every((letter) => clickedLetters.includes(letter));
 
   const addGuessedLetter = useCallback(
     (letter: string) => {
       if (clickedLetters.includes(letter)) return;
+      if (isLoser) return;
+      if (isWinner) return;
       setClickedLetters((currentLetters) => [...currentLetters, letter]);
     },
     [clickedLetters],
   );
 
   // hook up keyboard with hangman drawing
-
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const key: string = e.key;
@@ -37,10 +42,20 @@ function App() {
 
   return (
     <section className="hangman_main">
-      <h2>Loose Win </h2>
+      <h2>
+        {isWinner && 'WINNER!!! - refresh to try again'}
+        {isLoser && 'Nice try - Refresh to try again'}
+      </h2>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
       <HangmanWord guessedLetters={clickedLetters} wordToGuess={wordToGuess} />
-      <Keyboard />
+      <Keyboard
+        disabled={isLoser || isWinner}
+        activeLetters={clickedLetters.filter((letter) =>
+          wordToGuess.includes(letter),
+        )}
+        inactiveLetters={incorrectLetters}
+        addGuessedLetter={addGuessedLetter}
+      />
     </section>
   );
 }
