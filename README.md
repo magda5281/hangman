@@ -2,7 +2,7 @@
 
 Deployed to Vercel
 
-## 🔗 Links
+## Links
 
 - [Live Project](https://hangman-zeta-drab.vercel.app/)
 
