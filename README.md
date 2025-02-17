@@ -1,5 +1,11 @@
 # Hangman Game
 
+Deployed to Vercel
+
+## 🔗 Links
+
+- [Live Project](https://hangman-zeta-drab.vercel.app/)
+
 ## Description
 
 This is a fully responsive Hangman game built using **React**, **TypeScript**, and **Vite**. The game randomly selects a word, and the player must guess the word one letter at a time before making 6 incorrect guesses.
@@ -19,27 +25,6 @@ This is a fully responsive Hangman game built using **React**, **TypeScript**, a
 - **Vite**: Fast development environment
 - **CSS Modules & Media Queries**: Ensures a responsive UI
 
-## Installation
-
-### **1. Clone the Repository**
-
-```sh
-git clone https://github.com/yourusername/hangman-game.git
-cd hangman-game
-```
-
-### **2. Install Dependencies**
-
-```sh
-npm install
-```
-
-### **3. Start the Development Server**
-
-```sh
-npm run dev
-```
-
 ## How to Play
 
 1. Guess a letter by clicking a button or pressing a key.
@@ -55,27 +40,17 @@ npm run dev
 ### **Scaling Hangman Drawing**
 
 - The game automatically adjusts for smaller screens (`<520px`) using `@media` queries in CSS.
-- `transform: scale(0.6)` is applied to shrink the Hangman drawing on mobile devices.
+- `transform: scale(0.6)` is applied to shrink the Hangman drawing on smaller screens .
 
 ### **Adaptive Keyboard Layout**
 
 - Uses `grid-template-columns: repeat(auto-fit, minmax(50px, 1fr))` to adjust keyboard button sizes dynamically.
-- Buttons shrink for smaller screens while maintaining usability.
 
 ## Customization
 
 - **Change word list**: Modify `wordList.json` to include your own words.
 - **Update styles**: Edit `Keyboard.module.css` or other component styles.
 - **Increase difficulty**: Modify `const isLoser = incorrectLetters.length >= 6;` in `App.tsx` to change the max number of mistakes allowed.
-
-## Deployment
-
-### **Deploy to Vercel**
-
-```sh
-npm run build
-vercel deploy
-```
 
 ## License
 
