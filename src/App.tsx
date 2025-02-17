@@ -7,13 +7,15 @@ function App() {
   const [wordToGuess, setWordToGuess] = useState(() => {
     return words[Math.floor(Math.random() * words.length)];
   });
-  console.log(wordToGuess);
-  const [guessedLetters, setGuessedLetters] = useState([]);
 
+  const [clickedLetters, setClickedLetters] = useState([]);
+  const incorrectLetters = clickedLetters.filter(
+    (letter) => !wordToGuess.includes(letter),
+  );
   return (
     <section className="hangman_main">
       <h2>Loose Win </h2>
-      <HangmanDrawing />
+      <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
       <HangmanWord />
       <Keyboard />
     </section>
