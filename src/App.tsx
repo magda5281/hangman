@@ -16,7 +16,7 @@ function App() {
     <section className="hangman_main">
       <h2>Loose Win </h2>
       <HangmanDrawing numberOfGuesses={incorrectLetters.length} />
-      <HangmanWord />
+      <HangmanWord guessedLetters={clickedLetters} wordToGuess={wordToGuess} />
       <Keyboard />
     </section>
   );
